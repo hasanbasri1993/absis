@@ -1,0 +1,2 @@
+<div class="the-box toolbar no-border no-margin text-center" style="padding-bottom: 20px; padding-top: 20px; margin-bottom: 30px; margin-top: 0px; border-bottom-width: 0px; background: #FBFBFB">
+</div>
