@@ -13,3 +13,6 @@ Step: </br>
 Login demo: demo.absis.co.id
 username: demo
 pass: demo
+
+Daftar Fitur (baik yg sudah dan yg akan):
+
