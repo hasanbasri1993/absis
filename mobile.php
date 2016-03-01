@@ -1,0 +1,1 @@
+Versi mobile Masih dalam pengembangan
