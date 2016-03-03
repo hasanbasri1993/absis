@@ -9,6 +9,7 @@ Next Version -> Sudah menggunakan framework laravel
 Step: </br>
 1. Upload data backend di server php anda </br>
 2. Ada 2 mysql yg harus anda gunakan, yaitu master dan tiap tahun ajaran. Ini kami berikan data dummy, agar bisa digunakan. </br>
+3. Setting agar sistem ada di root (misal langsung di http://localhost/ bukan di http://localhost/absis/ </br>
 
 Login demo: demo.absis.co.id
 username: demo
