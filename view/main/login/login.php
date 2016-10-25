@@ -11,6 +11,7 @@
 		<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link href="assets/css/style-responsive.css" rel="stylesheet">
+		<link href="./css/style.css" rel="stylesheet">
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -19,6 +20,13 @@
 
 		  ga('create', 'UA-62650664-1', 'auto');
 		  ga('send', 'pageview');
+		</script>
+		<!-- captcha -->
+		<script type='text/javascript'>
+			function refreshCaptcha(){
+				var img = document.images['captchaimg'];
+				img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
+			}
 		</script>
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -47,10 +55,29 @@
 				  <input type="password" name="password" id="password" class="form-control no-border input-lg rounded" placeholder="Enter password">
 				  <span class="fa fa-unlock-alt form-control-feedback"></span>
 				</div>
-				<input type="hidden" name="redirect" value="<?php $a = $_SERVER["REQUEST_URI"]; echo $a;?>">
-				<div class="form-group">
-					<button type="submit" class="btn btn-warning btn-lg btn-block" onclick="this.disabled=true;this.form.submit();">LOGIN</button>
-				</div>
+				<!-- captcha -->
+				<table width="400" border="0" align="center" cellpadding="5" cellspacing="1" class="table">
+				    <?php if(isset($msg)){?>
+				    <tr>
+				      <td colspan="2" align="center" valign="top"><?php echo $msg;?></td>
+				    </tr>
+				    <?php } ?>
+				    <tr>
+				      <td align="right" valign="top"> Validation code:</td>
+				      <td><img src="captcha.php?rand=<?php echo rand();?>" id='captchaimg'><br>
+					<label for='message'>Masukan Kode Captcha disini:</label>
+					<br>
+					<input id="captcha_code" name="captcha_code" type="text">
+					<br>
+					Captcha tidak bisa dibaca? click <a href='javascript: refreshCaptcha();'>here</a> to refresh.</td>
+				    </tr>
+				    <tr>
+				      <td>&nbsp;</td>
+				      <td><input name="Submit" type="submit" onclick="return validate();" value="Login" class="button1">
+					  <input type="hidden" name="redirect" value="<?php $a = $_SERVER["REQUEST_URI"]; echo $a;?>">
+				      </td>
+				    </tr>
+			  	</table>
 			</form>
 		</div>
 		<script src="assets/js/jquery.min.js"></script>
