@@ -18,6 +18,17 @@ if (!isset($_POST['password'])){
 	$_POST['password'] = "";	
 }
 
+if(isset($_POST['Submit'])){//cek sesuaian captcha
+	// code for check server side validation
+	if(empty($_SESSION['captcha_code'] ) || strcasecmp($_SESSION['captcha_code'], $_POST['captcha_code']) != 0){  
+		$n1 = "Captcha salah!";
+		$n2 = "Harap Sign In Ulang";
+		$msg="<div class='text-center'>
+				<a href='index.php' class='btn btn-info'>Sign Ulang</a>
+			  </div>";// Captcha verification is incorrect.		
+	}else{// Captcha verification is Correct. Final Code Execute here!				
+
+
 $username = $_POST['username'];
 $password = $_POST['password'];
 $count = $dbo -> prepare("SELECT * FROM login WHERE username=:username");
@@ -252,5 +263,7 @@ if ($count -> execute()){
 	session_unset();
 	session_destroy();
 	session_write_close();
+	}
+    }
 }
 ?>
