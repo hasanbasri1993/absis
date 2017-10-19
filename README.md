@@ -1,6 +1,8 @@
 # absis
 Sistem Akademik KTSP/K13
 
+web terbaru: absis.id
+
 Versi 0.000001 (yang mudeng cuman developernya aja)
 
 Masih Versi Alpha, banyak bug sana-sini dan kode yang tidak rapi.
