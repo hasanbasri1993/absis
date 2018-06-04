@@ -6,8 +6,10 @@
   ini_set("memory_limit","400M");
   set_time_limit(300);
 
+  $root = "https://".$_SERVER['HTTP_HOST'];
+  $root = str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+  include $_SERVER['DOCUMENT_ROOT'].$root."model/feature/mpdf/mpdf.php";
   include_once "model/class/master.php";
-  include $_SERVER['DOCUMENT_ROOT']."/model/feature/mpdf/mpdf.php";
 
   $mpdf=new mPDF('win-1252','A4',0,'','5','5','10','3','','');
   $mpdf->useOnlyCoreFonts = true;

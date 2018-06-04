@@ -25,9 +25,13 @@
   </head>
 
 <?php
-	include $_SERVER['DOCUMENT_ROOT']."/model/feature/mpdf/mpdf.php";
+
+	$root = "https://".$_SERVER['HTTP_HOST'];
+	$root = str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+	include $_SERVER['DOCUMENT_ROOT'].$root."model/feature/mpdf/mpdf.php";
 	include_once "model/class/master.php";
 
+	print $_SERVER['DOCUMENT_ROOT'].$root."/model/feature/mpdf/mpdf.php";
 	$kelasx= new Kelas($kelas,$subkelas);
 	$daftar_siswa= $kelasx->getSiswa();
   	$jumlah_siswa= sizeof($daftar_siswa);
