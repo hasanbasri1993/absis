@@ -300,8 +300,8 @@ if ($_SESSION['role'] == "admin") {
 				<h4 class="modal-title text-center">Aplikasi Akademik SMPN 1 Semarang</h4>
 			</div>
 			<div class="modal-body"style="color: rgba(1,1,1,0.6); max-height: 60vh;">
-				<div class="row">
-					<div class="col-md-3 col-sm-3 col-xs-6 text-center">
+				<div-- class="row">
+					<div class="col-md-4 col-sm-4 col-xs-6 text-center">
 						<a href="?p=home">
 							<i class="glyphicon glyphicon-home icon-circle icon-lg icon-info"></i>
 						</a>
@@ -309,7 +309,7 @@ if ($_SESSION['role'] == "admin") {
 							Home
 						</h4>
 					</div>					
-					<div class="col-md-3 col-sm-3 col-xs-6 text-center">
+					<div class="col-md-4 col-sm-4 col-xs-6 text-center">
 						<a href="#" data-dismiss="modal" id="password-side">
 							<i class="fa fa-lock icon-circle icon-lg icon-warning"></i>
 						</a>
@@ -317,15 +317,15 @@ if ($_SESSION['role'] == "admin") {
 							Password
 						</h4>						
 					</div>
-					<div class="col-md-3 col-sm-3 col-xs-6 text-center">
+					<!--div class="col-md-4 col-sm-4 col-xs-6 text-center">
 						<a href="#" data-dismiss="modal" id="lockscreen-side">
 							<i class="glyphicon glyphicon-time icon-circle icon-lg icon-success"></i>
 						</a>
 						<h4>
 							Lock Screen
 						</h4>
-					</div>
-					<div class="col-md-3 col-sm-3 col-xs-6 text-center">
+					</div-->
+					<div class="col-md-4 col-sm-4 col-xs-6 text-center">
 						<a href="#" data-dismiss="modal" id="logout-side">
 							<i class="glyphicon glyphicon-off icon-circle icon-lg icon-danger"></i>
 						</a>
