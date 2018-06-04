@@ -7,7 +7,8 @@
   $state_navbar = "input_nilai_proses"; // view/main/require/navbar/~ -home -content -other~
   include_once "view/main/require/navbar/navbar.php";
   include_once "model/class/master.php";
-
+  $root = "https://".$_SERVER['HTTP_HOST'];
+  $root .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
  // $siswaX=new Siswa(17854);
  // print_r($siswaX->getNilaiHarian(28));
 
@@ -17,11 +18,11 @@
   
   
 
-  $kelas        = new Kelas($kelas_get,$subkelas_get);
+  $kelas        = new Kelas($kelas_get, $subkelas_get);
   $nip          = $_GET['nip'];
   $guru         = new Guru($nip);
   $kode_mapel   = $guru->getKodeMapel($kelas->getKurikulum());
-  $mapel        = new Mapel($kode_mapel,$kelas_get,$subkelas_get);
+  $mapel        = new Mapel($kode_mapel, $kelas_get, $subkelas_get);
   $daftar_siswa = $kelas->getSiswa();
   $jumlah_siswa = sizeof($daftar_siswa);
   $topik        = $mapel->getTopik();
@@ -31,26 +32,26 @@
 
   $nilai_siswa = array();
   for ($i=0; $i < $jumlah_siswa; $i++) {
-    $siswa        = new Siswa($daftar_siswa[$i]['nis']);
-    $n_UTS        = $siswa->getNilaiUTS($kode_mapel); 
-    $n_UAS        = $siswa->getNilaiUAS($kode_mapel); //$siswa->getNilaiHarian($kode_topik);
-	$na_UAS        = $siswa->getNilaiAkhir($kode_mapel);
-    $nilai_topik  = array();
-    for ($x=0; $x < sizeof($topik); $x++) { 
-      //$n_topik = array('UT' => $n_UT, 'UL' => $n_UL, 'T' => $n_T);
-      $arr_nilai = $siswa->getNilaiHarian($topik[$x]['topik_id']);
-      //print_r($arr_nilai);
-      array_push($nilai_topik, $arr_nilai);
-    }
-    $arr = array('nis' => $daftar_siswa[$i]['nis'],'nama' => $daftar_siswa[$i]['nama'],'kkm' =>$kkm,'r_UTS' => $n_UTS, 'r_UAS' => $na_UAS, 'UTS' => $n_UTS, 'UAS' => $n_UAS, 'topik' => $nilai_topik);
-    array_push($nilai_siswa, $arr);
+      $siswa        = new Siswa($daftar_siswa[$i]['nis']);
+      $n_UTS        = $siswa->getNilaiUTS($kode_mapel);
+      $n_UAS        = $siswa->getNilaiUAS($kode_mapel); //$siswa->getNilaiHarian($kode_topik);
+      $na_UAS        = $siswa->getNilaiAkhir($kode_mapel);
+      $nilai_topik  = array();
+      for ($x=0; $x < sizeof($topik); $x++) {
+          //$n_topik = array('UT' => $n_UT, 'UL' => $n_UL, 'T' => $n_T);
+          $arr_nilai = $siswa->getNilaiHarian($topik[$x]['topik_id']);
+          //print_r($arr_nilai);
+          array_push($nilai_topik, $arr_nilai);
+      }
+      $arr = array('nis' => $daftar_siswa[$i]['nis'],'nama' => $daftar_siswa[$i]['nama'],'kkm' =>$kkm,'r_UTS' => $n_UTS, 'r_UAS' => $na_UAS, 'UTS' => $n_UTS, 'UAS' => $n_UAS, 'topik' => $nilai_topik);
+      array_push($nilai_siswa, $arr);
   }
   $nilai_siswax = json_encode($nilai_siswa);
 
 ?>
-<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
-<script src="../../../../../model/feature/hot/dist/handsontable.full.js"></script>
-<link rel="stylesheet" media="screen" href="../../../../../model/feature/hot/dist/handsontable.full.css">
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="<?=$root;?>/model/feature/hot/dist/handsontable.full.js"></script>
+<link rel="stylesheet" media="screen" href="<?=$root;?>/model/feature/hot/dist/handsontable.full.css">
 
 <!-- <link data-jsfiddle="common" rel="stylesheet" media="screen" href="../../../../../model/feature/hot/dist/handsontable.full.css">
 <script src="../../../../../model/feature/hot/dist/handsontable.full.js"></script> -->
@@ -232,7 +233,7 @@
                 data_kirim.unshift([sessionID,TA,Semester,NIP]);
                 $('#status').html('Menyimpan data...');
 
-                  $.post("/index.php?sajen=input_nilai_proses_content",
+                  $.post("<?=$root;?>/index.php?sajen=input_nilai_proses_content",
                   {json: JSON.stringify(data_kirim)},
                   function( data ){
 
@@ -303,7 +304,7 @@
                                     }
                                   },
                 contextMenuCopyPaste: {
-                                        swfPath: '../../../../../model/feature/hot/swf/ZeroClipboard.swf'
+                                        swfPath: '<?=$root;?>/model/feature/hot/swf/ZeroClipboard.swf'
                                       },
                 mergeCells      : data_merge,
                 className       : "htCenter htMiddle", 

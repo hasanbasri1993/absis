@@ -7,16 +7,12 @@
   $state_navbar = "input_nilai_proses"; // view/main/require/navbar/~ -home -content -other~
   include_once "view/main/require/navbar/navbar.php";
   include_once "model/class/master.php";
-
- // $siswaX=new Siswa(17854);
- // print_r($siswaX->getNilaiHarian(28));
-
+  $root = "https://".$_SERVER['HTTP_HOST'];
+  $root .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
   
   $kelas_get    = $_GET['kelas'][0];
   $subkelas_get = $_GET['kelas'][1];
   
-  
-
   $kelas        = new Kelas($kelas_get,$subkelas_get);
   $nip          = $_GET['nip'];
   $guru         = new Guru($nip);
@@ -48,9 +44,9 @@
   $nilai_siswax = json_encode($nilai_siswa);
 
 ?>
-<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
-<script src="../../../../../model/feature/hot/dist/handsontable.full.js"></script>
-<link rel="stylesheet" media="screen" href="../../../../../model/feature/hot/dist/handsontable.full.css">
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="<?=$root;?>/model/feature/hot/dist/handsontable.full.js"></script>
+<link rel="stylesheet" media="screen" href="<?=$root;?>/model/feature/hot/dist/handsontable.full.css">
 
 <!-- <link data-jsfiddle="common" rel="stylesheet" media="screen" href="../../../../../model/feature/hot/dist/handsontable.full.css">
 <script src="../../../../../model/feature/hot/dist/handsontable.full.js"></script> -->
@@ -231,7 +227,7 @@
                 data_kirim.unshift([sessionID,TA,Semester]);
                 $('#status').html('Menyimpan data...');
 
-                  $.post("/index.php?sajen=input_nilai_proses_content",
+                  $.post("<?=$root;?>/index.php?sajen=input_nilai_proses_content",
                   {json: JSON.stringify(data_kirim)},
                   function( data ){
 
@@ -302,7 +298,7 @@
                                     }
                                   },
                 contextMenuCopyPaste: {
-                                        swfPath: '../../../../../model/feature/hot/swf/ZeroClipboard.swf'
+                                        swfPath: '<?=$root;?>/model/feature/hot/swf/ZeroClipboard.swf'
                                       },
                 mergeCells      : data_merge,
                 className       : "htCenter htMiddle", 
